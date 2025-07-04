@@ -8,6 +8,18 @@ export default {
       link: "https://google.com/",
     };
   },
+  methods: {
+    toggleStatus() {
+      if (this.status === "active") {
+        this.status = "pending";
+      } else if (this.status === "pending") {
+        this.status = "inactive";
+      } else {
+        this.status = "active";
+      }
+      console.log("status:", this.status);
+    },
+  },
 };
 </script>
 
@@ -20,6 +32,10 @@ export default {
   <p v-for="task in tasks">{{ task }}</p>
   <!-- <a v-bind:href="link">Click me to google.</a> -->
   <a :href="link">Click me to google.</a>
+  <br />
+  <!-- toggle status change-->
+  <!-- <button v-on:click="toggleStatus">change status</button> -->
+  <button @click="toggleStatus">change status</button>
 </template>
 
 <style scoped>
