@@ -24,6 +24,10 @@ const addTask = () => {
     newTask.value = "";
   }
 };
+
+const deleteTask = (index) => {
+  tasks.value.splice(index, 1);
+};
 </script>
 
 <template>
@@ -39,7 +43,12 @@ const addTask = () => {
   </form>
 
   <h2>Tasks:</h2>
-  <li v-for="task in tasks" :key="task">{{ task }}</li>
+  <li v-for="(task, index) in tasks" :key="task">
+    <span>
+      {{ task }}
+    </span>
+    <button @click="deleteTask(index)">x</button>
+  </li>
   <!-- <a v-bind:href="link">Click me to google.</a> -->
   <a :href="link">Click me to google.</a>
   <br />
