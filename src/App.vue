@@ -5,6 +5,7 @@ export default {
       name: "john Doe",
       status: "",
       tasks: ["task 1", "task 2", "task 3", "task 4"],
+      link: "https://google.com/",
     };
   },
 };
@@ -17,6 +18,8 @@ export default {
   <p v-else="status">User is Inactive</p>
 
   <p v-for="task in tasks">{{ task }}</p>
+  <!-- <a v-bind:href="link">Click me to google.</a> -->
+  <a :href="link">Click me to google.</a>
 </template>
 
 <style scoped>
