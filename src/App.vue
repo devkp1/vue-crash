@@ -3,8 +3,9 @@ import { ref } from "vue";
 
 const name = ref("John Doe");
 const status = ref("");
-const tasks = ["task 1", "task 2", "task 3", "task 4"];
+const tasks = ref(["task 1", "task 2", "task 3", "task 4"]);
 const link = "https://google.com/";
+const newTask = ref("add new task here."); // adding someting to show on the ui.
 
 const toggleStatus = () => {
   if (status.value === "active") {
@@ -16,6 +17,13 @@ const toggleStatus = () => {
   }
   // console.log("status:", status.value);
 };
+
+const addTask = () => {
+  if (newTask.value.trim() !== "") {
+    tasks.value.push(newTask.value);
+    newTask.value = "";
+  }
+};
 </script>
 
 <template>
@@ -24,7 +32,14 @@ const toggleStatus = () => {
   <p v-else-if="status === 'pending'">User is pending</p>
   <p v-else="status">User is Inactive</p>
 
-  <p v-for="task in tasks">{{ task }}</p>
+  <form @submit.prevent="addTask">
+    <label for="newTask">Add Task</label>
+    <input type="text" name="add-task" id="newTask" v-model="newTask" />
+    <button type="submit">submit</button>
+  </form>
+
+  <h2>Tasks:</h2>
+  <li v-for="task in tasks" :key="task">{{ task }}</li>
   <!-- <a v-bind:href="link">Click me to google.</a> -->
   <a :href="link">Click me to google.</a>
   <br />
@@ -32,7 +47,6 @@ const toggleStatus = () => {
   <!-- <button v-on:click="toggleStatus">change status</button> -->
   <button @click="toggleStatus">change status</button>
 </template>
-
 <style scoped>
 h1 {
   /* text-align: center; */
