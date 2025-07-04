@@ -4,6 +4,7 @@ export default {
     return {
       name: "john Doe",
       status: "",
+      tasks: ["task 1", "task 2", "task 3", "task 4"],
     };
   },
 };
@@ -14,6 +15,8 @@ export default {
   <p v-if="status === 'active'">User is Active</p>
   <p v-else-if="status === 'pending'">User is pending</p>
   <p v-else="status">User is Inactive</p>
+
+  <p v-for="task in tasks">{{ task }}</p>
 </template>
 
 <style scoped>
